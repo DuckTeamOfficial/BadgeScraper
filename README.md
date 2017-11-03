@@ -58,3 +58,9 @@ npm i
 ### Notes
   * Script may take 30 minutes or more to complete!
   * set_data.json is only provided once the script completes.
+
+### Found this helpful and saved your bot?
+  * Feel free to send some bitcoin my way;
+```
+1NvqNqZrcJuqq6rsPyB2CazapxCZ4Wk6Fs
+```
