@@ -29,8 +29,7 @@ node index.js
 ### Modifying Bot Code
 1. In *package.json* add these lines in the *dependancies* section;
 ```json
-"path": "*",
-"fs": "*"
+"path": "*"
 ```
 2. In *utils.js* add these lines at the top of the file;
 ```javascript
