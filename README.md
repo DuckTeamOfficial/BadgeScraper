@@ -49,8 +49,8 @@ t.getCardsInSets = (callback) => {
 ### Notes
   * Script may take 30 minutes or more to complete!
   * set_data.json is only provided once the script completes.
-  * If it freezes, check memory/swap usage, it does require a fair amount of memory to run (50,000+ requests aint cheap), if it keeps running out, consider adding more swap.
-  * If you have a slower connection, try reducing the rate at which it makes requests;
+  * If the script freezes, and your machine has low ram capacity, reducing the request rate may help (see below).
+  * If you have a slower connection, try reducing the rate at which it makes requests, note that too short interval may result in requests getting stuck, could cause high memory usage, and the script may not complete (or it may complete with invalid data).
 ```javascript
 waitCount*30 // In line 26, increase 30 to 50 or 100. This is how many milliseconds between requests!
 ```
