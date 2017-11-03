@@ -54,6 +54,7 @@ t.getCardsInSets = (callback) => {
 var reqLimit = 30; // Max simultaneous requests. Required bandwidth in Mbit/s is 2.5 times this value.
 ```
   * Setting reqLimit too high will result in the script running slow, possibly getting stuck and never completing, or even crashing!
+  * Do not exceed ~75 reqLimit, your IP may get temporarily blocked by Steam!
 
 ### Found this helpful and saved your bot?
   * Feel free to send some bitcoin my way;
