@@ -1,7 +1,6 @@
 var removedAppids = {};
 
 removedAppids["448130"] = { appid: "448130", count: 5 };
-removedAppids["586090"] = { appid: "586090", count: 7 };
 removedAppids["392870"] = { appid: "392870", count: 5 };
 removedAppids["388870"] = { appid: "388870", count: 5 };
 removedAppids["314700"] = { appid: "314700", count: 5 };
