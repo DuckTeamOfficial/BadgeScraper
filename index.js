@@ -13,7 +13,7 @@ request("http://api.steampowered.com/ISteamApps/GetAppList/v0002/", { json: true
                     var count = (body.match(/game_card_ctn/g) || []).length;
                     if(count) {
                         data[app.appid] = { appid: app.appid, count: count };
-                        console.log("## Found appid " + app.appid + " with " + count + " cards, current sets found: + " Object.keys(data).length);
+                        console.log("## Found appid " + app.appid + " with " + count + " cards, current sets found: " + Object.keys(data).length);
                     } else {
                         console.log("## Skipping appid " + app.appid + " because it has no cards.");
                     }
