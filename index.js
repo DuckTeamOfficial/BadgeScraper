@@ -7,7 +7,6 @@ var reqLimit    = 30; // Max simultaneous requests. Required bandwidth in Mbit/s
 request("http://api.steampowered.com/ISteamApps/GetAppList/v0002/", { json: true }, (err, res, body) => {
     if (!err && res.statusCode == 200 && body) {
         console.log("## found " + body.applist.apps.length + " appids to scan!");
-
         async.eachLimit(body.applist.apps, reqLimit, (app,callback) => {
             request("http://steamcommunity.com/id/palmdesert/gamecards/" + app.appid + "/", (err, res, body) => {
                 if (!err && res.statusCode == 200 && body) {
