@@ -11,7 +11,7 @@ request("http://api.steampowered.com/ISteamApps/GetAppList/v0002/", { json: true
 		body.applist.apps.forEach(function(app){
 			calls.push(function(callback) {
 				setTimeout(function() {
-					request("http://steamcommunity.com/id/maximum-level-up-bot-1/gamecards/" + app.appid + "/", (err, res, body) => {
+					request("http://steamcommunity.com/id/palmdesert/gamecards/" + app.appid + "/", (err, res, body) => {
 						if (!err && res.statusCode == 200 && body) {
 							var count = (body.match(/game_card_ctn/g) || []).length;
 							if(count) {
