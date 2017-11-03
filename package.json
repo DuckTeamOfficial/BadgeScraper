@@ -1,0 +1,12 @@
+{
+    "name": "BadgeScraper",
+    "version": "1.0.0",
+    "description": "Scrapes Badge Data from Steam",
+    "main": "index.js",
+    "author": "Spartan C001",
+    "license": "ISC",
+    "dependencies": {
+        "request": "*",
+        "async":"*"
+    }
+}
