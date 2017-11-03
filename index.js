@@ -13,12 +13,12 @@ request("http://api.steampowered.com/ISteamApps/GetAppList/v0002/", { json: true
                     var count = (body.match(/game_card_ctn/g) || []).length;
                     if(count) {
                         data[app.appid] = { appid: app.appid, count: count };
-                        console.log("## Found appid " + app.appid + " with " + count + " cards, current sets found: " + Object.keys(data).length);
+                        console.log("## Scanned appid " + app.appid + " and found " + count + " cards, current sets: " + Object.keys(data).length);
                     } else {
-                        console.log("## Skipping appid " + app.appid + " because it has no cards.");
+                        console.log("## Scanned appid " + app.appid + " but found no cards.");
                     }
                 } else {
-                    console.log("## An error occured getting badge data for appid " + appid + ": " + (err?err:res.statusCode));
+                    console.log("## An error occured getting badge data for appid " + app.appid + ": " + (err?err:res.statusCode));
                     process.exit();
                 }
                 callback();
