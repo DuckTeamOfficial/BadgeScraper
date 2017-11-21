@@ -62,6 +62,4 @@ var reqLimit = 30; // Max simultaneous requests. Required bandwidth in Mbit/s is
 1NvqNqZrcJuqq6rsPyB2CazapxCZ4Wk6Fs
 ```
   * Pay for a beer or two;
-```
 [PayPal Link](https://www.paypal.me/ValkyrieStar)
-```
