@@ -63,5 +63,5 @@ var reqLimit = 30; // Max simultaneous requests. Required bandwidth in Mbit/s is
 ```
   * Pay for a beer or two;
 ```
-https://www.paypal.me/ValkyrieStar
+[PayPal Link](https://www.paypal.me/ValkyrieStar)
 ```
