@@ -2,7 +2,7 @@ const async     = require('async');
 const http      = require('http');
 const fs        = require('fs');
 var data        = require('./removedAppids.js');
-var reqLimit    = 50; // Max simultaneous requests. Required bandwidth in Mbit/s is 2.5 times this value.
+var reqLimit    = 25; // Max simultaneous requests. Required bandwidth in Mbit/s is 2.5 times this value.
 
 http.get("http://api.steampowered.com/ISteamApps/GetAppList/v0002/", (res) => {
     var body = '';
