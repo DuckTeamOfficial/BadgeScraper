@@ -1,33 +1,57 @@
-const request   = require('request');
 const async     = require('async');
+const http      = require('http');
 const fs        = require('fs');
 var data        = require('./removedAppids.js');
-var reqLimit    = 10; // Max simultaneous requests. Required bandwidth in Mbit/s is 2.5 times this value.
+var reqLimit    = 25; // Max simultaneous requests. Required bandwidth in Mbit/s is 2.5 times this value.
 
 request("http://api.steampowered.com/ISteamApps/GetAppList/v0002/", { json: true }, (err, res, body) => {
     if (!err && res.statusCode == 200 && body) {
         console.log("## Found " + body.applist.apps.length + " appids to scan for cards!");
         async.eachLimit(body.applist.apps, reqLimit, (app,callback) => {
-            var success = false;
+            var retry = true;
             async.whilst(() => {
-                return !success;
+                return retry;
             }, (cb) => {
-                request("http://steamcommunity.com/id/palmdesert/gamecards/" + app.appid + "/", (err, res, body) => {
-                    if (res.statusCode == 200 && body) {
-                        success = true;
-                        var count = (body.match(/game_card_ctn/g) || []).length;
-                        if(count) {
-                            data[app.appid] = { appid: app.appid, count: count };
+                http.get("http://steamcommunity.com/id/palmdesert/gamecards/" + app.appid + "/", (res) => {
+                    var body = '';
+                    res.setEncoding('utf8');
+                    res.on('data', (chunk) => {
+                        body += chunk;
+                    });
+                    res.on('end', () => {
+                        if(res.statusCode == 200) {
+                            var cardCount = (body.match(/game_card_ctn/g) || []).length;
+                            var steamError = (body.match(/An error was encountered while processing your request:/g) || []).length;
+                            var invalidGame = (body.match(/Invalid game/g) || []).length;
+                            if(!steamError)
+                            {
+                                retry = false;
+                                if(cardCount) {
+                                    data[app.appid] = { appid: app.appid, count: cardCount };
+                                }
+                                cb(false, data[app.appid]);
+                            } else {
+                                if (!invalidGame) {
+                                    retry = false;
+                                }
+                                cb();
+                            }
+                        } else if (res.statusCode == 302) {
+                            retry = false;
+                            cb();
+                        } else {
+                            console.log("## Request failed! Status Code: " + res.statusCode);
+                            cb((res.statusCode==403)?true:false);
                         }
-                        cb(false, [ app.appid, count ]);
-                    } else {
-                        console.log("## Steam gave us an error code: " + res.statusCode);
-                        cb((res.statusCode==403)?true:false);
-                    }
+                    });
+                    res.on('error', (err) => {
+                        console.log(err);
+                        cb(err);
+                    });
                 });
             }, (err, res) => {
-                if(!err && res[1]) {
-                    console.log("## Found appid " + res[0] + " with badge, current total: " + Object.keys(data).length);
+                if(!err && res) {
+                    console.log("## Badge found with appid " + res.appid + " and " + res.count + " cards, current total: " + Object.keys(data).length);
                 }
                 callback(err);
             });
