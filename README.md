@@ -47,14 +47,13 @@ t.getCardsInSets = (callback) => {
 4. You're good to go! Your bot should now work again with correct set data!
 
 ### Notes
-  * Script may take 30 minutes or more to complete!
+  * Script may take 30 minutes or more to complete on a slow connection!
   * set_data.json is only provided once the script completes.
-  * Set reqLimit to your internet connection speed in Mbit/s (run speedtest.net) divided by 2.5, e.g 50Mbit/s will want a value of 20.
+  * Adjust reqLimit to change the speed of the script (warning below).
 ```javascript
-var reqLimit = 30; // Max simultaneous requests. Required bandwidth in Mbit/s is 2.5 times this value.
+var reqLimit = 25; // Max simultaneous requests
 ```
-  * Setting reqLimit too high will result in the script running slow, possibly getting stuck and never completing, or even crashing!
-  * Do not exceed ~75 reqLimit, your IP may get temporarily blocked by Steam!
+  * Setting reqLimit too high on a slow connection will possibly result in the script getting stuck and never completing, or even crashing, setting it too high on a fast connection may also get you rate-limited by Steam!
 
 ### Found this helpful and saved your bot?
   * Feel free to send some bitcoin my way;
