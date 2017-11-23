@@ -4,9 +4,10 @@
     "description": "Scrapes Badge Data from Steam",
     "main": "index.js",
     "author": "Spartan C001",
-    "license": "ISC",
+    "license": "GPLv3",
+    "repository": "SpartanC001/BadgeScraper",
     "dependencies": {
         "request": "*",
-        "async":"*"
+        "async": "*"
     }
 }
