@@ -38,7 +38,7 @@ http.get("http://api.steampowered.com/ISteamApps/GetAppList/v0002/", (res) => {
                                     }
                                     cb(false, data[app.appid]);
                                 } else {
-                                    if (!invalidGame) {
+                                    if (invalidGame) {
                                         retry = false;
                                     }
                                     cb();
