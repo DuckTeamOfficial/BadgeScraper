@@ -4,7 +4,7 @@
     "description": "Scrapes Badge Data from Steam",
     "main": "index.js",
     "author": "Spartan C001",
-    "license": "GPLv3",
+    "license": "GPL-3.0",
     "repository": "SpartanC001/BadgeScraper",
     "dependencies": {
         "request": "*",
