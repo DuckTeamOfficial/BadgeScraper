@@ -58,7 +58,7 @@ var reqLimit = 25; // Max simultaneous requests
 ### Found this helpful and saved your bot?
   * Feel free to send some bitcoin my way;
 ```
-1NvqNqZrcJuqq6rsPyB2CazapxCZ4Wk6Fs
+141mwiNkBok79J6uhVMStUkJSmsSPHWhoX
 ```
   * Pay for a beer or two;
 [PayPal Link](https://www.paypal.me/ValkyrieStar)
