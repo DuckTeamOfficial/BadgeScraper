@@ -50,7 +50,7 @@ http.get("http://api.steampowered.com/ISteamApps/GetAppList/v0002/", (res) => {
                             }
                         });
                     }).on('error', (err) => {
-                        console.log("## An error occured with a request: " + err);
+                        console.log("## Request Failed! " + err);
                         cb();
                     });
                 }, (err, res) => {
@@ -77,7 +77,6 @@ http.get("http://api.steampowered.com/ISteamApps/GetAppList/v0002/", (res) => {
             console.log("## Failed to get appid list! Status Code: " + res.statusCode);
         }
     });
-    res.on('error', (err) => {
-        console.log("## Failed to get appid list: " + err);
-    });
+}).on('error', (err) => {
+   console.log("## Request Failed! " + err);
 });
