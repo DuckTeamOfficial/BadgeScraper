@@ -69,5 +69,6 @@ removedAppids["569540"] = { appid: "569540", count: 5 };
 removedAppids["488200"] = { appid: "569540", count: 9 };
 removedAppids["528210"] = { appid: "569540", count: 9 };
 removedAppids["473500"] = { appid: "473500", count: 5 };
+removedAppids["762800"] = { appid: "762800", count: 12};
 
 module.exports = removedAppids;
