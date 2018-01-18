@@ -38,23 +38,20 @@ http.get("http://api.steampowered.com/ISteamApps/GetAppList/v0002/", (res) => {
                                     }
                                     cb(false, data[app.appid]);
                                 } else {
-                                    if (invalidGame) {
-                                        retry = false;
-                                    }
+                                    retry = !invalidGame;
                                     cb();
                                 }
                             } else if (res.statusCode == 302) {
                                 retry = false;
                                 cb();
                             } else {
-                                console.log("## Unknown Response! Status Code: " + res.statusCode);
+                                console.log("## Received Response Code: " + res.statusCode);
                                 cb((res.statusCode==403)?true:false);
                             }
                         });
-                        res.on('error', (err) => {
-                            console.log("## Request failed: " + err);
-                            cb(err);
-                        });
+                    }).on('error', (err) => {
+                        console.log("## Request Failed! " + err);
+                        cb();
                     });
                 }, (err, res) => {
                     if(!err && res) {
@@ -62,8 +59,8 @@ http.get("http://api.steampowered.com/ISteamApps/GetAppList/v0002/", (res) => {
                     }
                     callback(err);
                 });
-            }, (err) => {
-                if (err) {
+            }, (quit) => {
+                if (quit) {
                     console.log("## Aborting! Got error 403, we are rate limited! Reduce reqLimit value!");
                     process.exit();
                 }
@@ -80,7 +77,6 @@ http.get("http://api.steampowered.com/ISteamApps/GetAppList/v0002/", (res) => {
             console.log("## Failed to get appid list! Status Code: " + res.statusCode);
         }
     });
-    res.on('error', (err) => {
-        console.log("## Failed to get appid list: " + err);
-    });
+}).on('error', (err) => {
+   console.log("## Request Failed! " + err);
 });
