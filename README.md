@@ -15,7 +15,7 @@ apt-get install npm
 ### How to Install / Run
 1. Clone this Git
 ```
-git clone https://github.com/SpartanC001/BadgeScraper.git
+git clone https://github.com/DuckTeamOfficial/BadgeScraper.git
 cd BadgeScraper
 ```
 2. Install Node.js Packages
