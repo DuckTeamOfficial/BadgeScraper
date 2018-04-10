@@ -1,10 +1,10 @@
 const async     = require('async');
-const http      = require('http');
+const https     = require('https');
 const fs        = require('fs');
 var data        = require('./removedAppids.js');
 var reqLimit    = 25; // Max simultaneous requests.
 
-http.get("http://api.steampowered.com/ISteamApps/GetAppList/v0002/", (res) => {
+https.get("https://api.steampowered.com/ISteamApps/GetAppList/v0002/", (res) => {
     var body = '';
     res.setEncoding('utf8');
     res.on('data', (chunk) => {
@@ -19,7 +19,8 @@ http.get("http://api.steampowered.com/ISteamApps/GetAppList/v0002/", (res) => {
                 async.whilst(() => {
                     return retry;
                 }, (cb) => {
-                    http.get("http://steamcommunity.com/id/palmdesert/gamecards/" + app.appid + "/", (res) => {
+                    https.get("https://steamcommunity.com/id/palmdesert/gamecards/" + app.appid + "/", (res) => {
+                        console.log(app.appid + ": " + res.statusCode);
                         var body = '';
                         res.setEncoding('utf8');
                         res.on('data', (chunk) => {
@@ -69,8 +70,9 @@ http.get("http://api.steampowered.com/ISteamApps/GetAppList/v0002/", (res) => {
                 fs.writeFile('./set_data.json', JSON.stringify(data), (err) => {
                     if(err) {
                         console.log("## Failed to write JSON file: " + err);
+                    } else {
+                        console.log("## All data written to file, mission complete!");
                     }
-                    console.log("## All data written to file, mission complete!");
                 });
             });
         } else {
