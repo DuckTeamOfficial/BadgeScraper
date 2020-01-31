@@ -4,7 +4,7 @@ const https         = require("https");
 const fs            = require("fs");
 
 // Constants
-const download_dir  = "./.temp/";  // Where to put temporary files, must exist!
+const download_dir  = "./temp/";  // Where to put temporary files, must exist!
 const reqLimit      = 20;          // Max simultaneous requests.
 
 // Our Set Data
