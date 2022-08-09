@@ -40,7 +40,7 @@ function delete_file(file_name)
 // Must be async because we're using promises in our functions for synchronous-ness!
 async function main()
 {
-    var result = await download_file("https://api.steampowered.com/ISteamApps/GetAppList/v0002/","apidata");
+    var result = await download_file("https://api.steampowered.com/ISteamApps/GetAppList/v2/","apidata");
     if (result != 200)
     {
         process.stdout.write("## Failed to get appid list! " + result + '\n');
