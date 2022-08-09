@@ -4,8 +4,8 @@ const https         = require("https");
 const fs            = require("fs");
 
 // Constants
-const download_dir  = "./temp/";  // Where to put temporary files, must exist!
-const reqLimit      = 20;          // Max simultaneous requests.
+const download_dir  = "./temp/";   // Where to put temporary files, must exist!
+const reqLimit      = 25;          // Max simultaneous requests.
 
 // Our Set Data
 var data            = require("./removedAppids.js");
@@ -51,8 +51,8 @@ async function main()
     process.stdout.write("## Found " + jsonData.applist.apps.length + " appids to scan for cards!" + '\n');
     var complete = 0, time = 0;
     var printProgress = setInterval(() => {
-        process.stdout.write("## Time Elapsed: " + ~~((time++)/2) + "s. AppIDs Scanned: " + complete + "/" + jsonData.applist.apps.length + ". Sets found: " + Object.keys(data).length + "." + '\r');
-    }, 500);
+        process.stdout.write("## Time Elapsed: " + ~~((time++)/50) + "s. AppIDs Scanned: " + complete + "/" + jsonData.applist.apps.length + " (" + (new Intl.NumberFormat('en-GB',{style:'percent',minimumFractionDigits:2}).format(complete/jsonData.applist.apps.length)) + "). Sets found: " + Object.keys(data).length + "." + '\r');
+    }, 20);
     async.eachLimit(jsonData.applist.apps, reqLimit, (app,callback) => {
         async function run()
         {
